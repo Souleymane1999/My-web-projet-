@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="agentStructure">
+      <h2 data-cy="agentStructureDetailsHeading">
+        <span jhiTranslate="immobilisationApp.agentStructure.detail.title">Agent Structure</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ agentStructure.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentStructure.struture">Struture</span></dt>
+        <dd>
+          <div *ngIf="agentStructure.struture">
+            <a [routerLink]="['/structure', agentStructure.struture.id, 'view']">{{ agentStructure.struture.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentStructure.agent">Agent</span></dt>
+        <dd>
+          <div *ngIf="agentStructure.agent">
+            <a [routerLink]="['/agent-affecter', agentStructure.agent.id, 'view']">{{ agentStructure.agent.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/agent-structure', agentStructure.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103851",
+  "dto": "mapstruct",
+  "entityTableName": "structure",
+  "fields": [
+    {
+      "fieldName": "nomStructure",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresseStructure",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Structure",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "localite",
+      "relationshipName": "localite",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

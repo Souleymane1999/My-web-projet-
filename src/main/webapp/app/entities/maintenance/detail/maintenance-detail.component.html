@@ -1,0 +1,85 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="maintenance">
+      <h2 data-cy="maintenanceDetailsHeading"><span jhiTranslate="immobilisationApp.maintenance.detail.title">Maintenance</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ maintenance.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.maintenance.dateMaintenance">Date Maintenance</span></dt>
+        <dd>
+          <span>{{ maintenance.dateMaintenance | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.maintenance.description">Description</span></dt>
+        <dd>
+          <span>{{ maintenance.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.maintenance.responsable">Responsable</span></dt>
+        <dd>
+          <span>{{ maintenance.responsable }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.maintenance.coutMaintenance">Cout Maintenance</span></dt>
+        <dd>
+          <span>{{ maintenance.coutMaintenance }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.maintenance.immobilisation">Immobilisation</span></dt>
+        <dd>
+          <div *ngIf="maintenance.immobilisation">
+            <a [routerLink]="['/immobilisation', maintenance.immobilisation.id, 'view']">{{ maintenance.immobilisation.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/maintenance', maintenance.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="maintenance">
+  <div class="card">
+    <div class="card-header bg-primary text-center text-light">
+      <h2 data-cy="maintenance">Details <span jhiTranslate="immobilisationApp.maintenance.detail.title">Maintenance</span></h2>
+    </div>
+    <div class="card-body">
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="immobilisationApp.maintenance.immobilisation">immobilisation</span></dt>
+        <dd class="text-break">
+          <span>{{ maintenance.immobilisation }}</span>
+        </dd>
+      </dl>
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="immobilisationApp.maintenance.description">Description</span></dt>
+        <dd class="text-break">
+          <span>{{ maintenance.description }}</span>
+        </dd>
+      </dl>
+
+      <h5 class="card-title">
+        <span jhiTranslate="immobilisationApp.maintenance.dateMaintenance">DateMaintenance</span>:
+        <span>{{ maintenance.dateMaintenance | formatMediumDatetime }}</span>
+      </h5>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.maintenance.responsable">Responsable</span></strong> :
+        <span>{{ maintenance.responsable }}</span>
+      </p>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.maintenance.coutMaintenance">CoutMaintenance</span></strong> :
+        <span>{{ maintenance.coutMaintenance }}</span>
+      </p>
+    </div>
+  </div>
+</div>

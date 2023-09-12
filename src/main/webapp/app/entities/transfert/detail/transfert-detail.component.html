@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transfert">
+      <h2 data-cy="transfertDetailsHeading"><span jhiTranslate="immobilisationApp.transfert.detail.title">Transfert</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transfert.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.transfert.dateTransfert">Date Transfert</span></dt>
+        <dd>
+          <span>{{ transfert.dateTransfert | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.transfert.immobilisation">Immobilisation</span></dt>
+        <dd>
+          <div *ngIf="transfert.immobilisation">
+            <a [routerLink]="['/immobilisation', transfert.immobilisation.id, 'view']">{{ transfert.immobilisation.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.transfert.struture">Struture</span></dt>
+        <dd>
+          <div *ngIf="transfert.struture">
+            <a [routerLink]="['/structure', transfert.struture.id, 'view']">{{ transfert.struture.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transfert', transfert.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="transfert">
+  <div class="card">
+    <div class="card-header bg-primary text-center text-light">
+      <h2 data-cy="transfertDetailsHeading">Details <span jhiTranslate="immobilisationApp.transfert.detail.title">transfert</span></h2>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <span>immobilisation</span>:
+        <div *ngIf="transfert.immobilisation">
+          <a [routerLink]="['/immobilisation', transfert.immobilisation.id, 'view']">{{ transfert.immobilisation.id }}</a>
+        </div>
+      </h5>
+      <div *ngIf="transfert.struture">
+        <a [routerLink]="['/structure', transfert.struture.id, 'view']">{{ transfert.struture.id }}</a>
+      </div>
+      <p class="card-text">
+        <strong><span>dateTransfert</span></strong> : <span>{{ transfert.dateTransfert | formatMediumDatetime }}</span>
+      </p>
+    </div>
+  </div>
+</div>

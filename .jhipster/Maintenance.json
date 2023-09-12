@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103850",
+  "dto": "mapstruct",
+  "entityTableName": "maintenance",
+  "fields": [
+    {
+      "fieldName": "dateMaintenance",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "responsable",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "coutMaintenance",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Maintenance",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "immobilisation",
+      "relationshipName": "immobilisation",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

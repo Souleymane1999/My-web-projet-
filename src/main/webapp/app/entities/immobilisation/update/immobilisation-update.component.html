@@ -1,0 +1,145 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-immobilisation-heading"
+        data-cy="ImmobilisationCreateUpdateHeading"
+        jhiTranslate="immobilisationApp.immobilisation.home.createOrEditLabel"
+      >
+        Créer ou éditer un Immobilisation
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.valeur" for="field_valeur">Valeur</label>
+          <input type="text" class="form-control" name="valeur" id="field_valeur" data-cy="valeur" formControlName="valeur" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.etat" for="field_etat">Etat</label>
+          <input type="text" class="form-control" name="etat" id="field_etat" data-cy="etat" formControlName="etat" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.quantite" for="field_quantite">Quantite</label>
+          <input type="text" class="form-control" name="quantite" id="field_quantite" data-cy="quantite" formControlName="quantite" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.dateAcquisition" for="field_dateAcquisition"
+            >Date Acquisition</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateAcquisition"
+              data-cy="dateAcquisition"
+              type="datetime-local"
+              class="form-control"
+              name="dateAcquisition"
+              formControlName="dateAcquisition"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.typeAmortissement" for="field_typeAmortissement"
+            >Type Amortissement</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="typeAmortissement"
+            id="field_typeAmortissement"
+            data-cy="typeAmortissement"
+            formControlName="typeAmortissement"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.dureeAmortissement" for="field_dureeAmortissement"
+            >Duree Amortissement</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dureeAmortissement"
+            id="field_dureeAmortissement"
+            data-cy="dureeAmortissement"
+            formControlName="dureeAmortissement"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.categorie" for="field_categorie">Categorie</label>
+          <select
+            class="form-control"
+            id="field_categorie"
+            data-cy="categorie"
+            name="categorie"
+            formControlName="categorie"
+            [compareWith]="compareCategorie"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="categorieOption" *ngFor="let categorieOption of categoriesSharedCollection">{{ categorieOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.immobilisation.gestion" for="field_gestion">Gestion</label>
+          <select
+            class="form-control"
+            id="field_gestion"
+            data-cy="gestion"
+            name="gestion"
+            formControlName="gestion"
+            [compareWith]="compareGestion"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="gestionOption" *ngFor="let gestionOption of gestionsSharedCollection">{{ gestionOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

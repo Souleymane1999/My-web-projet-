@@ -1,0 +1,17 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103846",
+  "dto": "mapstruct",
+  "entityTableName": "categorie",
+  "fields": [
+    {
+      "fieldName": "nomCategorie",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Categorie",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

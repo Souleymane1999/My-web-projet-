@@ -1,0 +1,58 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103848",
+  "dto": "mapstruct",
+  "entityTableName": "immobilisation",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valeur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateAcquisition",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "typeAmortissement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dureeAmortissement",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Immobilisation",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "categorie",
+      "relationshipName": "categorie",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "gestion",
+      "relationshipName": "gestion",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

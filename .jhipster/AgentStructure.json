@@ -1,0 +1,25 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103845",
+  "dto": "mapstruct",
+  "entityTableName": "agent_structure",
+  "fields": [],
+  "name": "AgentStructure",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "structure",
+      "relationshipName": "struture",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "agentAffecter",
+      "relationshipName": "agent",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

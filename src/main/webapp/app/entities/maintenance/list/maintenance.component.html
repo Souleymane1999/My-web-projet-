@@ -1,0 +1,149 @@
+<div>
+  <h2 id="page-heading" data-cy="MaintenanceHeading">
+    <span jhiTranslate="immobilisationApp.maintenance.home.title">Maintenances</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="immobilisationApp.maintenance.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-maintenance"
+        [routerLink]="['/maintenance/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="immobilisationApp.maintenance.home.createLabel"> Créer un nouveau Maintenance </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="maintenances?.length === 0">
+    <span jhiTranslate="immobilisationApp.maintenance.home.notFound">Aucun Maintenance trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="maintenances && maintenances.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateMaintenance">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.maintenance.dateMaintenance">Date Maintenance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.maintenance.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="responsable">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.maintenance.responsable">Responsable</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="coutMaintenance">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.maintenance.coutMaintenance">Cout Maintenance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="immobilisation.id">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.maintenance.immobilisation">Immobilisation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let maintenance of maintenances; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/maintenance', maintenance.id, 'view']">{{ maintenance.id }}</a>
+          </td>
+          <td>{{ maintenance.dateMaintenance | formatMediumDatetime }}</td>
+          <td>{{ maintenance.description }}</td>
+          <td>{{ maintenance.responsable }}</td>
+          <td>{{ maintenance.coutMaintenance }}</td>
+          <td>
+            <div *ngIf="maintenance.immobilisation">
+              <a [routerLink]="['/immobilisation', maintenance.immobilisation.id, 'view']">{{ maintenance.immobilisation.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="container mt-5">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <fa-icon icon="list"></fa-icon>
+                </button>
+                <div class="dropdown-menu">
+                  <button type="submit" [routerLink]="['/maintenance', maintenance.id, 'view']" class="btn btn-info btn-sm dropdown-item">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/maintenance', maintenance.id, 'edit']"
+                    class="btn btn-primary btn-sm dropdown-item"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </button>
+                  <button
+                    type="submit"
+                    (click)="delete(maintenance)"
+                    class="btn dropdown-item btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="maintenances && maintenances.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

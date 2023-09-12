@@ -1,0 +1,88 @@
+
+
+entity Structure {
+
+	nomStructure  String
+    adresseStructure String 
+}
+
+entity Localite {
+
+	nomLocalite String
+    codePostal String 
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Transfert { 
+	dateTransfert Instant
+}
+
+entity Maintenance {
+    dateMaintenance Instant  
+    description String 
+	responsable String
+    coutMaintenance String
+}
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity AgentAffecter {
+	matricule String
+    nomUtilisateur String
+    prenomUtilisateur String
+    poste String
+    adresse String
+    telephone String
+}
+entity Immobilisation {
+	nom String
+    description String
+	valeur String
+	etat String
+	quantite String
+	dateAcquisition Instant
+    typeAmortissement String
+    dureeAmortissement String
+}
+
+entity Categorie {
+	nomCategorie String
+}
+
+entity Gestion {
+	typeGestion String 
+}
+entity AgentStructure {
+
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+
+     Immobilisation{categorie} to Categorie,
+     Immobilisation{gestion} to Gestion,
+     Maintenance{immobilisation} to Immobilisation,
+     Transfert{immobilisation} to Immobilisation,
+     Transfert{struture} to Structure,
+     Structure{localite} to Localite,
+     AgentStructure{struture} to Structure,
+     AgentStructure{agent} to AgentAffecter
+}
+
+
+// Set pagination options
+
+paginate * with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

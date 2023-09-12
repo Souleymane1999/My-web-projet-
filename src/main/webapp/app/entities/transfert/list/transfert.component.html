@@ -1,0 +1,139 @@
+<div>
+  <h2 id="page-heading" data-cy="TransfertHeading">
+    <span jhiTranslate="immobilisationApp.transfert.home.title">Transferts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="immobilisationApp.transfert.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-transfert"
+        [routerLink]="['/transfert/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="immobilisationApp.transfert.home.createLabel"> Créer un nouveau Transfert </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="transferts?.length === 0">
+    <span jhiTranslate="immobilisationApp.transfert.home.notFound">Aucun Transfert trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="transferts && transferts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateTransfert">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.transfert.dateTransfert">Date Transfert</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="immobilisation.id">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.transfert.immobilisation">Immobilisation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="struture.id">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.transfert.struture">Struture</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transfert of transferts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/transfert', transfert.id, 'view']">{{ transfert.id }}</a>
+          </td>
+          <td>{{ transfert.dateTransfert | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="transfert.immobilisation">
+              <a [routerLink]="['/immobilisation', transfert.immobilisation.id, 'view']">{{ transfert.immobilisation.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="transfert.struture">
+              <a [routerLink]="['/structure', transfert.struture.id, 'view']">{{ transfert.struture.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="container mt-5">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <fa-icon icon="list"></fa-icon>
+                </button>
+                <div class="dropdown-menu">
+                  <button type="submit" [routerLink]="['/transfert', transfert.id, 'view']" class="btn btn-info btn-sm dropdown-item">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/transfert', transfert.id, 'edit']"
+                    class="btn btn-primary btn-sm dropdown-item"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </button>
+                  <button
+                    type="submit"
+                    (click)="delete(transfert)"
+                    class="btn dropdown-item btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="transferts && transferts.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

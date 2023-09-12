@@ -1,0 +1,115 @@
+<!-- <div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="immobilisation">
+      <h2 data-cy="immobilisationDetailsHeading">
+        <span jhiTranslate="immobilisationApp.immobilisation.detail.title">Immobilisation</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ immobilisation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.nom">Nom</span></dt>
+        <dd>
+          <span>{{ immobilisation.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.description">Description</span></dt>
+        <dd>
+          <span>{{ immobilisation.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.valeur">Valeur</span></dt>
+        <dd>
+          <span>{{ immobilisation.valeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.etat">Etat</span></dt>
+        <dd>
+          <span>{{ immobilisation.etat }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.quantite">Quantite</span></dt>
+        <dd>
+          <span>{{ immobilisation.quantite }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.dateAcquisition">Date Acquisition</span></dt>
+        <dd>
+          <span>{{ immobilisation.dateAcquisition | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.typeAmortissement">Type Amortissement</span></dt>
+        <dd>
+          <span>{{ immobilisation.typeAmortissement }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.dureeAmortissement">Duree Amortissement</span></dt>
+        <dd>
+          <span>{{ immobilisation.dureeAmortissement }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.categorie">Categorie</span></dt>
+        <dd>
+          <div *ngIf="immobilisation.categorie">
+            <a [routerLink]="['/categorie', immobilisation.categorie.id, 'view']">{{ immobilisation.categorie.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.gestion">Gestion</span></dt>
+        <dd>
+          <div *ngIf="immobilisation.gestion">
+            <a [routerLink]="['/gestion', immobilisation.gestion.id, 'view']">{{ immobilisation.gestion.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/immobilisation', immobilisation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div> -->
+<div class="container mt-4" *ngIf="immobilisation">
+  <div class="card">
+    <div class="card-header bg-primary text-center text-light">
+      <h2 data-cy="immobilisationDetailsHeading">
+        Details <span jhiTranslate="immobilisationApp.immobilisation.detail.title">Immobilisation</span>
+      </h2>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <span jhiTranslate="immobilisationApp.immobilisation.nom">Nom</span>: <span>{{ immobilisation.nom }}</span>
+      </h5>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.immobilisation.valeur">Valeur</span></strong> :
+        <span>{{ immobilisation.valeur }}</span>
+      </p>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.immobilisation.quantite">Quantite</span></strong> :
+        <span>{{ immobilisation.quantite }}</span>
+      </p>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.immobilisation.categorie">Categorie</span></strong> :
+        <span>{{ immobilisation.categorie }}</span>
+      </p>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.immobilisation.dateAcquisition">DateAcquisition</span></strong> :
+        <span>{{ immobilisation.dateAcquisition }}</span>
+      </p>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.immobilisation.gestion">TypeGestion</span></strong> :
+        <span>{{ immobilisation.gestion }}</span>
+      </p>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.description">Description</span></dt>
+        <dd class="text-break">
+          <span>{{ immobilisation.description }}</span>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>

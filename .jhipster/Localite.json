@@ -1,0 +1,21 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103849",
+  "dto": "mapstruct",
+  "entityTableName": "localite",
+  "fields": [
+    {
+      "fieldName": "nomLocalite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codePostal",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Localite",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

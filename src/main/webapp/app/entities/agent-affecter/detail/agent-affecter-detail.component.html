@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="agentAffecter">
+      <h2 data-cy="agentAffecterDetailsHeading"><span jhiTranslate="immobilisationApp.agentAffecter.detail.title">Agent Affecter</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ agentAffecter.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentAffecter.matricule">Matricule</span></dt>
+        <dd>
+          <span>{{ agentAffecter.matricule }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentAffecter.nomUtilisateur">Nom Utilisateur</span></dt>
+        <dd>
+          <span>{{ agentAffecter.nomUtilisateur }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentAffecter.prenomUtilisateur">Prenom Utilisateur</span></dt>
+        <dd>
+          <span>{{ agentAffecter.prenomUtilisateur }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentAffecter.poste">Poste</span></dt>
+        <dd>
+          <span>{{ agentAffecter.poste }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentAffecter.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ agentAffecter.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.agentAffecter.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ agentAffecter.telephone }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/agent-affecter', agentAffecter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

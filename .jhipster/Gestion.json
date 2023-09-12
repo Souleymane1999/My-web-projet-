@@ -1,0 +1,17 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103847",
+  "dto": "mapstruct",
+  "entityTableName": "gestion",
+  "fields": [
+    {
+      "fieldName": "typeGestion",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Gestion",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

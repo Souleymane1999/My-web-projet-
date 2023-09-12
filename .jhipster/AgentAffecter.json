@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103844",
+  "dto": "mapstruct",
+  "entityTableName": "agent_affecter",
+  "fields": [
+    {
+      "fieldName": "matricule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomUtilisateur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenomUtilisateur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "poste",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    }
+  ],
+  "javadoc": "Task entity.\\n@author The JHipster team.",
+  "name": "AgentAffecter",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

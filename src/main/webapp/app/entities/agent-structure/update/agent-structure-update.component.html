@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-agent-structure-heading"
+        data-cy="AgentStructureCreateUpdateHeading"
+        jhiTranslate="immobilisationApp.agentStructure.home.createOrEditLabel"
+      >
+        Créer ou éditer un Agent Structure
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agentStructure.struture" for="field_struture">Struture</label>
+          <select
+            class="form-control"
+            id="field_struture"
+            data-cy="struture"
+            name="struture"
+            formControlName="struture"
+            [compareWith]="compareStructure"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="structureOption" *ngFor="let structureOption of structuresSharedCollection">{{ structureOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agentStructure.agent" for="field_agent">Agent</label>
+          <select
+            class="form-control"
+            id="field_agent"
+            data-cy="agent"
+            name="agent"
+            formControlName="agent"
+            [compareWith]="compareAgentAffecter"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="agentAffecterOption" *ngFor="let agentAffecterOption of agentAffectersSharedCollection">
+              {{ agentAffecterOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

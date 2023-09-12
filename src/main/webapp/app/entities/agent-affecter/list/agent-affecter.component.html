@@ -1,0 +1,156 @@
+<div>
+  <h2 id="page-heading" data-cy="AgentAffecterHeading">
+    <span jhiTranslate="immobilisationApp.agentAffecter.home.title">AgentAffecters</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="immobilisationApp.agentAffecter.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-agent-affecter"
+        [routerLink]="['/agent-affecter/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="immobilisationApp.agentAffecter.home.createLabel"> Créer un nouveau Agent Affecter </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="agentAffecters?.length === 0">
+    <span jhiTranslate="immobilisationApp.agentAffecter.home.notFound">Aucun Agent Affecter trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="agentAffecters && agentAffecters.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="matricule">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agentAffecter.matricule">Matricule</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nomUtilisateur">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agentAffecter.nomUtilisateur">Nom Utilisateur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prenomUtilisateur">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agentAffecter.prenomUtilisateur">Prenom Utilisateur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="poste">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agentAffecter.poste">Poste</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="adresse">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agentAffecter.adresse">Adresse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="telephone">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agentAffecter.telephone">Telephone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let agentAffecter of agentAffecters; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/agent-affecter', agentAffecter.id, 'view']">{{ agentAffecter.id }}</a>
+          </td>
+          <td>{{ agentAffecter.matricule }}</td>
+          <td>{{ agentAffecter.nomUtilisateur }}</td>
+          <td>{{ agentAffecter.prenomUtilisateur }}</td>
+          <td>{{ agentAffecter.poste }}</td>
+          <td>{{ agentAffecter.adresse }}</td>
+          <td>{{ agentAffecter.telephone }}</td>
+          <td class="text-end">
+            <div class="container mt-5">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <fa-icon icon="list"></fa-icon>
+                </button>
+                <div class="dropdown-menu">
+                  <button
+                    type="submit"
+                    [routerLink]="['/agentAffecter', agentAffecter.id, 'view']"
+                    class="btn btn-info btn-sm dropdown-item"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/agentAffecter', agentAffecter.id, 'edit']"
+                    class="btn btn-primary btn-sm dropdown-item"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </button>
+                  <button
+                    type="submit"
+                    (click)="delete(agentAffecter)"
+                    class="btn dropdown-item btn-danger btn-sm"
+                    data-cy="entityDeleteButton"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="agentAffecters && agentAffecters.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20230818103852",
+  "dto": "mapstruct",
+  "entityTableName": "transfert",
+  "fields": [
+    {
+      "fieldName": "dateTransfert",
+      "fieldType": "Instant"
+    }
+  ],
+  "javadoc": "not an ignored comment",
+  "name": "Transfert",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "immobilisation",
+      "relationshipName": "immobilisation",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "structure",
+      "relationshipName": "struture",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

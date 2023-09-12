@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="gestion">
+      <h2 data-cy="gestionDetailsHeading"><span jhiTranslate="immobilisationApp.gestion.detail.title">Gestion</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ gestion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.gestion.typeGestion">Type Gestion</span></dt>
+        <dd>
+          <span>{{ gestion.typeGestion }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/gestion', gestion.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="gestion">
+  <div class="card">
+    <div class="card-header bg-primary text-center text-light">
+      <h2 data-cy="gestionDetailsHeading">Details <span jhiTranslate="immobilisationApp.gestion.detail.title">gestion</span></h2>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <span jhiTranslate="immobilisationApp.gestion.typeGestion">TypeGestion</span>: <span>{{ gestion.typeGestion }}</span>
+      </h5>
+      <p class="card-text">
+        <strong><span jhiTranslate="immobilisationApp.gestion.typeGestion">TypeGestion</span></strong> :
+        <span>{{ gestion.typeGestion }}</span>
+      </p>
+    </div>
+  </div>
+</div>

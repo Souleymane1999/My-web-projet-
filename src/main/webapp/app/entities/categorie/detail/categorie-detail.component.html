@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="categorie">
+      <h2 data-cy="categorieDetailsHeading"><span jhiTranslate="immobilisationApp.categorie.detail.title">Categorie</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ categorie.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.categorie.nomCategorie">Nom Categorie</span></dt>
+        <dd>
+          <span>{{ categorie.nomCategorie }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/categorie', categorie.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="categorie">
+  <div class="card">
+    <div class="card-header bg-primary text-center text-light">
+      <h2 data-cy="categorie">Details <span jhiTranslate="immobilisationApp.categorie.detail.title">categorie</span></h2>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">
+        <span jhiTranslate="immobilisationApp.categorie.nomCategorie">nomCategorie</span>: <span>{{ categorie.nomCategorie }}</span>
+      </h5>
+    </div>
+  </div>
+</div>
