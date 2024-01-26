@@ -11,6 +11,8 @@ import { TransfertService } from '../service/transfert.service';
 import { ITransfert } from '../transfert.model';
 import { IImmobilisation } from 'app/entities/immobilisation/immobilisation.model';
 import { ImmobilisationService } from 'app/entities/immobilisation/service/immobilisation.service';
+import { IAgent } from 'app/entities/agent/agent.model';
+import { AgentService } from 'app/entities/agent/service/agent.service';
 import { IStructure } from 'app/entities/structure/structure.model';
 import { StructureService } from 'app/entities/structure/service/structure.service';
 
@@ -23,6 +25,7 @@ describe('Transfert Management Update Component', () => {
   let transfertFormService: TransfertFormService;
   let transfertService: TransfertService;
   let immobilisationService: ImmobilisationService;
+  let agentService: AgentService;
   let structureService: StructureService;
 
   beforeEach(() => {
@@ -46,6 +49,7 @@ describe('Transfert Management Update Component', () => {
     transfertFormService = TestBed.inject(TransfertFormService);
     transfertService = TestBed.inject(TransfertService);
     immobilisationService = TestBed.inject(ImmobilisationService);
+    agentService = TestBed.inject(AgentService);
     structureService = TestBed.inject(StructureService);
 
     comp = fixture.componentInstance;
@@ -54,10 +58,10 @@ describe('Transfert Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Immobilisation query and add missing value', () => {
       const transfert: ITransfert = { id: 456 };
-      const immobilisation: IImmobilisation = { id: 41736 };
+      const immobilisation: IImmobilisation = { id: 3501 };
       transfert.immobilisation = immobilisation;
 
-      const immobilisationCollection: IImmobilisation[] = [{ id: 60781 }];
+      const immobilisationCollection: IImmobilisation[] = [{ id: 28776 }];
       jest.spyOn(immobilisationService, 'query').mockReturnValue(of(new HttpResponse({ body: immobilisationCollection })));
       const additionalImmobilisations = [immobilisation];
       const expectedCollection: IImmobilisation[] = [...additionalImmobilisations, ...immobilisationCollection];
@@ -74,14 +78,36 @@ describe('Transfert Management Update Component', () => {
       expect(comp.immobilisationsSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Agent query and add missing value', () => {
+      const transfert: ITransfert = { id: 456 };
+      const agent: IAgent = { id: 96207 };
+      transfert.agent = agent;
+
+      const agentCollection: IAgent[] = [{ id: 97899 }];
+      jest.spyOn(agentService, 'query').mockReturnValue(of(new HttpResponse({ body: agentCollection })));
+      const additionalAgents = [agent];
+      const expectedCollection: IAgent[] = [...additionalAgents, ...agentCollection];
+      jest.spyOn(agentService, 'addAgentToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ transfert });
+      comp.ngOnInit();
+
+      expect(agentService.query).toHaveBeenCalled();
+      expect(agentService.addAgentToCollectionIfMissing).toHaveBeenCalledWith(
+        agentCollection,
+        ...additionalAgents.map(expect.objectContaining)
+      );
+      expect(comp.agentsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should call Structure query and add missing value', () => {
       const transfert: ITransfert = { id: 456 };
-      const struture: IStructure = { id: 40171 };
-      transfert.struture = struture;
+      const structure: IStructure = { id: 83131 };
+      transfert.structure = structure;
 
-      const structureCollection: IStructure[] = [{ id: 86022 }];
+      const structureCollection: IStructure[] = [{ id: 85092 }];
       jest.spyOn(structureService, 'query').mockReturnValue(of(new HttpResponse({ body: structureCollection })));
-      const additionalStructures = [struture];
+      const additionalStructures = [structure];
       const expectedCollection: IStructure[] = [...additionalStructures, ...structureCollection];
       jest.spyOn(structureService, 'addStructureToCollectionIfMissing').mockReturnValue(expectedCollection);
 
@@ -98,16 +124,19 @@ describe('Transfert Management Update Component', () => {
 
     it('Should update editForm', () => {
       const transfert: ITransfert = { id: 456 };
-      const immobilisation: IImmobilisation = { id: 27294 };
+      const immobilisation: IImmobilisation = { id: 28892 };
       transfert.immobilisation = immobilisation;
-      const struture: IStructure = { id: 26007 };
-      transfert.struture = struture;
+      const agent: IAgent = { id: 90981 };
+      transfert.agent = agent;
+      const structure: IStructure = { id: 99368 };
+      transfert.structure = structure;
 
       activatedRoute.data = of({ transfert });
       comp.ngOnInit();
 
       expect(comp.immobilisationsSharedCollection).toContain(immobilisation);
-      expect(comp.structuresSharedCollection).toContain(struture);
+      expect(comp.agentsSharedCollection).toContain(agent);
+      expect(comp.structuresSharedCollection).toContain(structure);
       expect(comp.transfert).toEqual(transfert);
     });
   });
@@ -188,6 +217,16 @@ describe('Transfert Management Update Component', () => {
         jest.spyOn(immobilisationService, 'compareImmobilisation');
         comp.compareImmobilisation(entity, entity2);
         expect(immobilisationService.compareImmobilisation).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('compareAgent', () => {
+      it('Should forward to agentService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(agentService, 'compareAgent');
+        comp.compareAgent(entity, entity2);
+        expect(agentService.compareAgent).toHaveBeenCalledWith(entity, entity2);
       });
     });
 

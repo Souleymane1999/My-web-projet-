@@ -14,6 +14,13 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'AgentStructures' },
         loadChildren: () => import('./agent-structure/agent-structure.routes'),
       },
+
+      // {
+      //   path: 'amortissement',
+      //   data: { pageTitle: 'Amortissement' },
+      //   loadChildren: () => import('./amortissement/amortissement.routes'),
+      // },
+
       {
         path: 'categorie',
         data: { pageTitle: 'Categories' },
@@ -48,6 +55,11 @@ import { RouterModule } from '@angular/router';
         path: 'transfert',
         data: { pageTitle: 'Transferts' },
         loadChildren: () => import('./transfert/transfert.routes'),
+      },
+      {
+        path: 'agent',
+        data: { pageTitle: 'Agents' },
+        loadChildren: () => import('./agent/agent.routes'),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

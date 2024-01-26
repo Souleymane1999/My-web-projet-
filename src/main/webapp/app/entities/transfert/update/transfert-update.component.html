@@ -54,13 +54,21 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" jhiTranslate="immobilisationApp.transfert.struture" for="field_struture">Struture</label>
+          <label class="form-label" jhiTranslate="immobilisationApp.transfert.agent" for="field_agent">Agent</label>
+          <select class="form-control" id="field_agent" data-cy="agent" name="agent" formControlName="agent" [compareWith]="compareAgent">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="agentOption" *ngFor="let agentOption of agentsSharedCollection">{{ agentOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.transfert.structure" for="field_structure">Structure</label>
           <select
             class="form-control"
-            id="field_struture"
-            data-cy="struture"
-            name="struture"
-            formControlName="struture"
+            id="field_structure"
+            data-cy="structure"
+            name="structure"
+            formControlName="structure"
             [compareWith]="compareStructure"
           >
             <option [ngValue]="null"></option>

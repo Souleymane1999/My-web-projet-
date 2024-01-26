@@ -1,0 +1,28 @@
+<h2>Calcul d'amortissement</h2>
+<p>Utilisez le formulaire ci-dessous pour calculer l'amortissement :</p>
+
+<form>
+  <label for="montant">Montant du bien :</label>
+  <input type="number" id="montant" [(ngModel)]="montant" step="0.01" required /><br /><br />
+
+  <label for="taux">Taux d'amortissement (en pourcentage) :</label>
+  <input type="number" id="taux" [(ngModel)]="taux" step="0.01" required /><br /><br />
+
+  <label for="duree">Durée d'amortissement en années :</label>
+  <input type="number" id="duree" [(ngModel)]="duree" required /><br /><br />
+
+  <button (click)="calculerAmortissement()">Calculer l'amortissement</button>
+</form>
+
+<br />
+<h3>Résultats de l'amortissement :</h3>
+<table border="1">
+  <tr>
+    <th>Année</th>
+    <th>Montant d'amortissement</th>
+  </tr>
+  <tr *ngFor="let resultat of resultats">
+    <td>{{ resultat.annee }}</td>
+    <td>{{ resultat.amortissement | number : '1.2-2' }}</td>
+  </tr>
+</table>

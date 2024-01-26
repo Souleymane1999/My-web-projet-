@@ -3,22 +3,20 @@ import dayjs from 'dayjs/esm';
 import { IMaintenance, NewMaintenance } from './maintenance.model';
 
 export const sampleWithRequiredData: IMaintenance = {
-  id: 23507,
+  id: 56671,
 };
 
 export const sampleWithPartialData: IMaintenance = {
-  id: 41619,
-  dateMaintenance: dayjs('2023-08-17T11:19'),
-  description: 'c b cargo',
-  responsable: 'Cambridgeshire orange b',
+  id: 14180,
+  description: 'polonais Diesel',
 };
 
 export const sampleWithFullData: IMaintenance = {
-  id: 25872,
-  dateMaintenance: dayjs('2023-08-17T16:57'),
-  description: 'back',
-  responsable: 'mindshare haptic a',
-  coutMaintenance: 'fourbe Nord',
+  id: 74611,
+  dateMaintenance: dayjs('2023-08-18T10:02'),
+  description: 'b interactive content',
+  responsable: 'marcher Analyste haptic',
+  coutMaintenance: 'scale Ergonomique',
 };
 
 export const sampleWithNewData: NewMaintenance = {

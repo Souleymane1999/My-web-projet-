@@ -1,19 +1,17 @@
 import { IStructure, NewStructure } from './structure.model';
 
 export const sampleWithRequiredData: IStructure = {
-  id: 89094,
+  id: 58199,
 };
 
 export const sampleWithPartialData: IStructure = {
-  id: 82556,
-  nomStructure: 'Cerium Thaïlande',
-  adresseStructure: 'Jaguar a',
+  id: 19700,
 };
 
 export const sampleWithFullData: IStructure = {
-  id: 40456,
-  nomStructure: '24/7',
-  adresseStructure: 'modular mobile Génial',
+  id: 92640,
+  nomStructure: 'Femme Magnifique',
+  adresseStructure: 'distributed b',
 };
 
 export const sampleWithNewData: NewStructure = {

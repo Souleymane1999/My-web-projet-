@@ -15,7 +15,7 @@
         [routerLink]="['/categorie/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="immobilisationApp.categorie.home.createLabel"> Créer un nouveau Categorie </span>
+        <span jhiTranslate="immobilisationApp.categorie.home.createLabel"> Créer une nouvelle Categorie </span>
       </button>
     </div>
   </h2>
@@ -32,13 +32,13 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+          <th scope="col" jhiSortBy="id" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="global.field.id">ID</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="nomCategorie">
+          <th scope="col" jhiSortBy="nomCategorie" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.categorie.nomCategorie">Nom Categorie</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>

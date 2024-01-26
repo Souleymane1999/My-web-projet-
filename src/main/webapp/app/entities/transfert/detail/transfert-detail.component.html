@@ -1,3 +1,32 @@
+<style>
+  /* Appliquer la couleur au titre h1 */
+  h2 {
+    color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+  }
+  /* P {
+      font-size: 22px;
+    } */
+  .header-container {
+    text-align: center; /* Aligner horizontalement le contenu du conteneur */
+  }
+  .header-container h2 {
+    margin: 0 0 0 13px; /* Ajuster la marge à votre convenance */
+    display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+  }
+  .header-container img {
+    max-width: 13%;
+    height: auto;
+  }
+</style>
+
+<div class="header-container">
+  <!-- Image -->
+  <img src="content/images/logo-cnss.png" alt="Description de l'image" />
+
+  <!-- Titre -->
+  <h2 class="display-4"><span>Transfert</span></h2>
+</div>
+
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="transfert">
@@ -24,10 +53,16 @@
             <a [routerLink]="['/immobilisation', transfert.immobilisation.id, 'view']">{{ transfert.immobilisation.id }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="immobilisationApp.transfert.struture">Struture</span></dt>
+        <dt><span jhiTranslate="immobilisationApp.transfert.agent">Agent</span></dt>
         <dd>
-          <div *ngIf="transfert.struture">
-            <a [routerLink]="['/structure', transfert.struture.id, 'view']">{{ transfert.struture.id }}</a>
+          <div *ngIf="transfert.agent">
+            <a [routerLink]="['/agent', transfert.agent.id, 'view']">{{ transfert.agent.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="immobilisationApp.transfert.structure">Structure</span></dt>
+        <dd>
+          <div *ngIf="transfert.structure">
+            <a [routerLink]="['/structure', transfert.structure.id, 'view']">{{ transfert.structure.id }}</a>
           </div>
         </dd>
       </dl>
@@ -39,28 +74,6 @@
       <button type="button" [routerLink]="['/transfert', transfert.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
       </button>
-    </div>
-  </div>
-</div>
-
-<div class="container mt-4" *ngIf="transfert">
-  <div class="card">
-    <div class="card-header bg-primary text-center text-light">
-      <h2 data-cy="transfertDetailsHeading">Details <span jhiTranslate="immobilisationApp.transfert.detail.title">transfert</span></h2>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">
-        <span>immobilisation</span>:
-        <div *ngIf="transfert.immobilisation">
-          <a [routerLink]="['/immobilisation', transfert.immobilisation.id, 'view']">{{ transfert.immobilisation.id }}</a>
-        </div>
-      </h5>
-      <div *ngIf="transfert.struture">
-        <a [routerLink]="['/structure', transfert.struture.id, 'view']">{{ transfert.struture.id }}</a>
-      </div>
-      <p class="card-text">
-        <strong><span>dateTransfert</span></strong> : <span>{{ transfert.dateTransfert | formatMediumDatetime }}</span>
-      </p>
     </div>
   </div>
 </div>

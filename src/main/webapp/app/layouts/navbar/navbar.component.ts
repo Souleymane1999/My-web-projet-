@@ -26,6 +26,7 @@ export default class NavbarComponent implements OnInit {
   version = '';
   account: Account | null = null;
   entitiesNavbarItems: NavbarItem[] = [];
+  opened = false;
 
   constructor(
     private loginService: LoginService,

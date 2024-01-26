@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-agent-heading" data-cy="AgentCreateUpdateHeading" jhiTranslate="immobilisationApp.agent.home.createOrEditLabel">
+        Créer ou éditer un Agent
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agent.matricule" for="field_matricule">Matricule</label>
+          <input type="text" class="form-control" name="matricule" id="field_matricule" data-cy="matricule" formControlName="matricule" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agent.nomUtilisateur" for="field_nomUtilisateur">Nom Utilisateur</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomUtilisateur"
+            id="field_nomUtilisateur"
+            data-cy="nomUtilisateur"
+            formControlName="nomUtilisateur"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agent.prenomUtilisateur" for="field_prenomUtilisateur"
+            >Prenom Utilisateur</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="prenomUtilisateur"
+            id="field_prenomUtilisateur"
+            data-cy="prenomUtilisateur"
+            formControlName="prenomUtilisateur"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agent.poste" for="field_poste">Poste</label>
+          <input type="text" class="form-control" name="poste" id="field_poste" data-cy="poste" formControlName="poste" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agent.adresse" for="field_adresse">Adresse</label>
+          <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" jhiTranslate="immobilisationApp.agent.telephone" for="field_telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

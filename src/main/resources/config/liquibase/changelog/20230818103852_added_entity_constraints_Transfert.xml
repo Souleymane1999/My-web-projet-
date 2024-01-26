@@ -15,9 +15,16 @@
                                  referencedTableName="immobilisation"
                                  />
 
-        <addForeignKeyConstraint baseColumnNames="struture_id"
+        <addForeignKeyConstraint baseColumnNames="agent_id"
                                  baseTableName="transfert"
-                                 constraintName="fk_transfert__struture_id"
+                                 constraintName="fk_transfert__agent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="agent"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="structure_id"
+                                 baseTableName="transfert"
+                                 constraintName="fk_transfert__structure_id"
                                  referencedColumnNames="id"
                                  referencedTableName="structure"
                                  />

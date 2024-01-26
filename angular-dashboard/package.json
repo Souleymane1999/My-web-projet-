@@ -1,0 +1,14 @@
+{
+  "name": "angular-dashboard",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "cubejs-server"
+  },
+  "template": "docker",
+  "templateVersion": "0.34.3",
+  "devDependencies": {
+    "@cubejs-backend/postgres-driver": "^0.34.3",
+    "@cubejs-backend/server": "^0.34.3"
+  }
+}

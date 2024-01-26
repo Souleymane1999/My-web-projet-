@@ -55,4 +55,13 @@ public interface ImmobilisationService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+    /**
+     * Get the "id" immobilisation.
+     *
+     * @param id the id of the entity.
+     * @return
+     * @return the entity.
+     */
+    //   CalculAmmortissement (Immobilisation: immobilisation, taux annee){
+
 }

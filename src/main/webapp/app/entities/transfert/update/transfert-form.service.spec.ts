@@ -22,7 +22,8 @@ describe('Transfert Form Service', () => {
             id: expect.any(Object),
             dateTransfert: expect.any(Object),
             immobilisation: expect.any(Object),
-            struture: expect.any(Object),
+            agent: expect.any(Object),
+            structure: expect.any(Object),
           })
         );
       });
@@ -35,7 +36,8 @@ describe('Transfert Form Service', () => {
             id: expect.any(Object),
             dateTransfert: expect.any(Object),
             immobilisation: expect.any(Object),
-            struture: expect.any(Object),
+            agent: expect.any(Object),
+            structure: expect.any(Object),
           })
         );
       });

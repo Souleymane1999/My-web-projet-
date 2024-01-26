@@ -1,3 +1,10 @@
+mat-sidenav-container {
+  height: calc(205vh - 115vh);
+}
+mat-sidenav {
+  width: 200px;
+  background-color: #eee;
+}
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 
@@ -34,3 +41,21 @@ Logo styles
   background: url('/content/images/logo-jhipster.png') no-repeat center center;
   background-size: contain;
 }
+//...............................................
+
+.profile-image {
+  height: 1.75em;
+  width: 1.75em;
+}
+
+.nav1bar {
+  padding: 0.2rem 1rem;
+
+  a.nav1-link {
+    font-weight: 400;
+  }
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */

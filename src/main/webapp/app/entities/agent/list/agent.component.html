@@ -1,0 +1,176 @@
+<style>
+  /* Appliquer la couleur au titre h1 */
+  h2 {
+    color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+  }
+  /* P {
+      font-size: 22px;
+    } */
+  .header-container {
+    text-align: center; /* Aligner horizontalement le contenu du conteneur */
+  }
+  .header-container h2 {
+    margin: 0 0 0 13px; /* Ajuster la marge à votre convenance */
+    display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+  }
+  .header-container img {
+    max-width: 13%;
+    height: auto;
+  }
+</style>
+
+<div class="header-container">
+  <!-- Image -->
+  <img src="content/images/logo-cnss.png" alt="Description de l'image" />
+
+  <!-- Titre -->
+  <h2 class="display-4"><span>Agent</span></h2>
+</div>
+
+<div>
+  <h2 id="page-heading" data-cy="AgentHeading">
+    <!-- <span jhiTranslate="immobilisationApp.agent.home.title">Agents</span> -->
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="immobilisationApp.agent.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-agent"
+        [routerLink]="['/agent/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="immobilisationApp.agent.home.createLabel"> Ajouter un nouveau Agent </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="agents?.length === 0">
+    <span jhiTranslate="immobilisationApp.agent.home.notFound">Aucun Agent trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="agents && agents.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="matricule" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agent.matricule">Matricule</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nomUtilisateur" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agent.nomUtilisateur">Nom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prenomUtilisateur" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agent.prenomUtilisateur">Prenom</span>
+              <fa-icon class="p-1" ic on="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="poste" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agent.poste">Poste</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="adresse" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agent.adresse">Adresse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="telephone" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.agent.telephone">Telephone</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let agent of agents; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/agent', agent.id, 'view']">{{ agent.id }}</a>
+          </td>
+          <td>{{ agent.matricule }}</td>
+          <td>{{ agent.nomUtilisateur }}</td>
+          <td>{{ agent.prenomUtilisateur }}</td>
+          <td>{{ agent.poste }}</td>
+          <td>{{ agent.adresse }}</td>
+          <td>{{ agent.telephone }}</td>
+          <td class="text-end">
+            <div class="container mt-5">
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <fa-icon icon="list"></fa-icon>
+                </button>
+                <div class="dropdown-menu">
+                  <button type="submit" [routerLink]="['/agent', agent.id, 'view']" class="btn btn-info btn-sm dropdown-item">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </button>
+                  <button
+                    type="submit"
+                    [routerLink]="['/agent', agent.id, 'edit']"
+                    class="btn btn-primary btn-sm dropdown-item"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </button>
+                  <button type="submit" (click)="delete(agent)" class="btn dropdown-item btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="agents && agents.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

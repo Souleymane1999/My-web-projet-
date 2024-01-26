@@ -12,7 +12,7 @@ export interface IImmobilisation {
   dateAcquisition?: dayjs.Dayjs | null;
   typeAmortissement?: string | null;
   dureeAmortissement?: string | null;
-  categorie?: Pick<ICategorie, 'id' | 'nomCategorie'> | null;
+  categorie?: Pick<ICategorie, 'id'> | null;
   gestion?: Pick<IGestion, 'id'> | null;
 }
 

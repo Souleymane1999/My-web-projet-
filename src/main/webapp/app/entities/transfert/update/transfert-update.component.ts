@@ -12,6 +12,8 @@ import { ITransfert } from '../transfert.model';
 import { TransfertService } from '../service/transfert.service';
 import { IImmobilisation } from 'app/entities/immobilisation/immobilisation.model';
 import { ImmobilisationService } from 'app/entities/immobilisation/service/immobilisation.service';
+import { IAgent } from 'app/entities/agent/agent.model';
+import { AgentService } from 'app/entities/agent/service/agent.service';
 import { IStructure } from 'app/entities/structure/structure.model';
 import { StructureService } from 'app/entities/structure/service/structure.service';
 
@@ -26,6 +28,7 @@ export class TransfertUpdateComponent implements OnInit {
   transfert: ITransfert | null = null;
 
   immobilisationsSharedCollection: IImmobilisation[] = [];
+  agentsSharedCollection: IAgent[] = [];
   structuresSharedCollection: IStructure[] = [];
 
   editForm: TransfertFormGroup = this.transfertFormService.createTransfertFormGroup();
@@ -34,12 +37,15 @@ export class TransfertUpdateComponent implements OnInit {
     protected transfertService: TransfertService,
     protected transfertFormService: TransfertFormService,
     protected immobilisationService: ImmobilisationService,
+    protected agentService: AgentService,
     protected structureService: StructureService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   compareImmobilisation = (o1: IImmobilisation | null, o2: IImmobilisation | null): boolean =>
     this.immobilisationService.compareImmobilisation(o1, o2);
+
+  compareAgent = (o1: IAgent | null, o2: IAgent | null): boolean => this.agentService.compareAgent(o1, o2);
 
   compareStructure = (o1: IStructure | null, o2: IStructure | null): boolean => this.structureService.compareStructure(o1, o2);
 
@@ -95,9 +101,10 @@ export class TransfertUpdateComponent implements OnInit {
       this.immobilisationsSharedCollection,
       transfert.immobilisation
     );
+    this.agentsSharedCollection = this.agentService.addAgentToCollectionIfMissing<IAgent>(this.agentsSharedCollection, transfert.agent);
     this.structuresSharedCollection = this.structureService.addStructureToCollectionIfMissing<IStructure>(
       this.structuresSharedCollection,
-      transfert.struture
+      transfert.structure
     );
   }
 
@@ -115,12 +122,18 @@ export class TransfertUpdateComponent implements OnInit {
       )
       .subscribe((immobilisations: IImmobilisation[]) => (this.immobilisationsSharedCollection = immobilisations));
 
+    this.agentService
+      .query()
+      .pipe(map((res: HttpResponse<IAgent[]>) => res.body ?? []))
+      .pipe(map((agents: IAgent[]) => this.agentService.addAgentToCollectionIfMissing<IAgent>(agents, this.transfert?.agent)))
+      .subscribe((agents: IAgent[]) => (this.agentsSharedCollection = agents));
+
     this.structureService
       .query()
       .pipe(map((res: HttpResponse<IStructure[]>) => res.body ?? []))
       .pipe(
         map((structures: IStructure[]) =>
-          this.structureService.addStructureToCollectionIfMissing<IStructure>(structures, this.transfert?.struture)
+          this.structureService.addStructureToCollectionIfMissing<IStructure>(structures, this.transfert?.structure)
         )
       )
       .subscribe((structures: IStructure[]) => (this.structuresSharedCollection = structures));

@@ -18,7 +18,9 @@ public class TransfertDTO implements Serializable {
 
     private ImmobilisationDTO immobilisation;
 
-    private StructureDTO struture;
+    private AgentDTO agent;
+
+    private StructureDTO structure;
 
     public Long getId() {
         return id;
@@ -44,12 +46,20 @@ public class TransfertDTO implements Serializable {
         this.immobilisation = immobilisation;
     }
 
-    public StructureDTO getStruture() {
-        return struture;
+    public AgentDTO getAgent() {
+        return agent;
     }
 
-    public void setStruture(StructureDTO struture) {
-        this.struture = struture;
+    public void setAgent(AgentDTO agent) {
+        this.agent = agent;
+    }
+
+    public StructureDTO getStructure() {
+        return structure;
+    }
+
+    public void setStructure(StructureDTO structure) {
+        this.structure = structure;
     }
 
     @Override
@@ -80,7 +90,8 @@ public class TransfertDTO implements Serializable {
             "id=" + getId() +
             ", dateTransfert='" + getDateTransfert() + "'" +
             ", immobilisation=" + getImmobilisation() +
-            ", struture=" + getStruture() +
+            ", agent=" + getAgent() +
+            ", structure=" + getStructure() +
             "}";
     }
 }

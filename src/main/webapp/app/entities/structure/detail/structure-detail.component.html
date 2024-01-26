@@ -1,3 +1,32 @@
+<style>
+  /* Appliquer la couleur au titre h1 */
+  h2 {
+    color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+  }
+  /* P {
+      font-size: 22px;
+    } */
+  .header-container {
+    text-align: center; /* Aligner horizontalement le contenu du conteneur */
+  }
+  .header-container h2 {
+    margin: 0 0 0 13px; /* Ajuster la marge à votre convenance */
+    display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+  }
+  .header-container img {
+    max-width: 13%;
+    height: auto;
+  }
+</style>
+
+<div class="header-container">
+  <!-- Image -->
+  <img src="content/images/logo-cnss.png" alt="Description de l'image" />
+
+  <!-- Titre -->
+  <h2 class="display-4"><span>Structure</span></h2>
+</div>
+
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="structure">
@@ -37,25 +66,6 @@
       <button type="button" [routerLink]="['/structure', structure.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
       </button>
-    </div>
-  </div>
-</div>
-<div class="container mt-4" *ngIf="structure">
-  <div class="card">
-    <div class="card-header bg-primary text-center text-light">
-      <h2 data-cy="structureDetailsHeading">Details <span jhiTranslate="immobilisationApp.structure.detail.title">Structure</span></h2>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">
-        <span jhiTranslate="immobilisationApp.structure.nomStructure">nomStructure</span>: <span>{{ structure.nomStructure }}</span>
-      </h5>
-      <p class="card-text">
-        <strong><span jhiTranslate="immobilisationApp.structure.adresseStructure">adresseStructure</span></strong> :
-        <span>{{ structure.adresseStructure }}</span>
-      </p>
-      <p class="card-text">
-        <strong><span jhiTranslate="immobilisationApp.structure.localite">Localite</span></strong> : <span>{{ structure.localite }}</span>
-      </p>
     </div>
   </div>
 </div>

@@ -25,14 +25,15 @@
       "Localite",
       "Maintenance",
       "Structure",
-      "Transfert"
+      "Transfert",
+      "Agent"
     ],
     "entitySuffix": "",
     "gradleEnterpriseHost": null,
     "jhiPrefix": "jhi",
     "jhipsterVersion": "8.0.0-beta.1",
     "jwtSecretKey": "MGZlNzAxM2VkODZiMTc1NWNiNmJhNzRmYjk4MzlkNDk3MWUwMzM4MGQzYmY3ODM5NTE1YzI4ZmU1NGE4ODFiNGI4ZDI4NmYyYWUxNTlmMTk5ZGU0YThiNWI5ZDVkNzU0MmMyZDQzZjAyNjJhODU4YzlmZWE5ZWY2ZWIzNWVlMDU=",
-    "lastLiquibaseTimestamp": 1692355132000,
+    "lastLiquibaseTimestamp": 1694520797000,
     "messageBroker": false,
     "microfrontend": false,
     "microfrontends": [],

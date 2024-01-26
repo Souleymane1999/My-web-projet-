@@ -50,10 +50,10 @@ describe('Structure Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Localite query and add missing value', () => {
       const structure: IStructure = { id: 456 };
-      const localite: ILocalite = { id: 89774 };
+      const localite: ILocalite = { id: 52514 };
       structure.localite = localite;
 
-      const localiteCollection: ILocalite[] = [{ id: 80102 }];
+      const localiteCollection: ILocalite[] = [{ id: 21294 }];
       jest.spyOn(localiteService, 'query').mockReturnValue(of(new HttpResponse({ body: localiteCollection })));
       const additionalLocalites = [localite];
       const expectedCollection: ILocalite[] = [...additionalLocalites, ...localiteCollection];
@@ -72,7 +72,7 @@ describe('Structure Management Update Component', () => {
 
     it('Should update editForm', () => {
       const structure: IStructure = { id: 456 };
-      const localite: ILocalite = { id: 82401 };
+      const localite: ILocalite = { id: 48753 };
       structure.localite = localite;
 
       activatedRoute.data = of({ structure });

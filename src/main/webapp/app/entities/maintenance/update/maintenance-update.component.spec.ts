@@ -50,10 +50,10 @@ describe('Maintenance Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Immobilisation query and add missing value', () => {
       const maintenance: IMaintenance = { id: 456 };
-      const immobilisation: IImmobilisation = { id: 16199 };
+      const immobilisation: IImmobilisation = { id: 15486 };
       maintenance.immobilisation = immobilisation;
 
-      const immobilisationCollection: IImmobilisation[] = [{ id: 43331 }];
+      const immobilisationCollection: IImmobilisation[] = [{ id: 54874 }];
       jest.spyOn(immobilisationService, 'query').mockReturnValue(of(new HttpResponse({ body: immobilisationCollection })));
       const additionalImmobilisations = [immobilisation];
       const expectedCollection: IImmobilisation[] = [...additionalImmobilisations, ...immobilisationCollection];
@@ -72,7 +72,7 @@ describe('Maintenance Management Update Component', () => {
 
     it('Should update editForm', () => {
       const maintenance: IMaintenance = { id: 456 };
-      const immobilisation: IImmobilisation = { id: 69257 };
+      const immobilisation: IImmobilisation = { id: 46504 };
       maintenance.immobilisation = immobilisation;
 
       activatedRoute.data = of({ maintenance });

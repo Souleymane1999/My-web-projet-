@@ -20,8 +20,14 @@
       "relationshipType": "many-to-one"
     },
     {
+      "otherEntityName": "agent",
+      "relationshipName": "agent",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityName": "structure",
-      "relationshipName": "struture",
+      "relationshipName": "structure",
       "relationshipSide": "left",
       "relationshipType": "many-to-one"
     }

@@ -1,13 +1,50 @@
 <div>
-  <h2 id="page-heading" data-cy="ImmobilisationHeading">
-    <span jhiTranslate="immobilisationApp.immobilisation.home.title">Immobilisations</span>
+  <style>
+    /* Appliquer la couleur au titre h1 */
+    h2 {
+      color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+    }
+    /* P {
+        font-size: 22px;
+      } */
+    .header-container {
+      text-align: center; /* Aligner horizontalement le contenu du conteneur */
+    }
+    .header-container h2 {
+      margin: 0 0 0 13px; /* Ajuster la marge à votre convenance */
+      display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+    }
+    .header-container img {
+      max-width: 13%;
+      height: auto;
+    }
+  </style>
+
+  <div class="header-container">
+    <!-- Image -->
+    <img src="content/images/logo-cnss.png" alt="Description de l'image" />
+
+    <!-- Titre -->
+    <h2 class="display-4"><span>Immobilisations</span></h2>
+  </div>
+
+  <h1 id="page-heading" data-cy="ImmobilisationHeading">
+    <span jhiTranslate="immobilisationApp.immobilisation.home.title"></span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="immobilisationApp.immobilisation.home.refreshListLabel">Actualiser la liste</span>
       </button>
-
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-success jh-create-entity create-immobilisation me-2"
+        [routerLink]="['/immobilisation/amortissement']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="immobilisationApp.immobilisation.home.createLabel">Amortissement</span>
+      </button>
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
@@ -15,10 +52,10 @@
         [routerLink]="['/immobilisation/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="immobilisationApp.immobilisation.home.createLabel"> Créer un nouveau Immobilisation </span>
+        <span jhiTranslate="immobilisationApp.immobilisation.home.createLabel"> Ajouter une nouvelle Immobilisation </span>
       </button>
     </div>
-  </h2>
+  </h1>
 
   <jhi-alert-error></jhi-alert-error>
 
@@ -30,101 +67,104 @@
 
   <div class="table-responsive table-entities" id="entities" *ngIf="immobilisations && immobilisations.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
+      <thead class="table-blue-header">
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+          <th scope="col" jhiSortBy="id" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="global.field.id">ID</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="nom">
+          <th scope="col" jhiSortBy="nom" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.nom">Nom</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="description">
+          <th scope="col" jhiSortBy="description" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.description">Description</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="valeur">
+          <th scope="col" jhiSortBy="valeur" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.valeur">Valeur</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="etat">
+          <th scope="col" jhiSortBy="etat" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.etat">Etat</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="quantite">
+          <th scope="col" jhiSortBy="quantite" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.quantite">Quantite</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="dateAcquisition">
+          <th scope="col" jhiSortBy="dateAcquisition" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.dateAcquisition">Date Acquisition</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="typeAmortissement">
+          <th scope="col" jhiSortBy="typeAmortissement" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.typeAmortissement">Type Amortissement</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="dureeAmortissement">
+          <th scope="col" jhiSortBy="dureeAmortissement" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.dureeAmortissement">Duree Amortissement</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="categorie.id">
+          <th scope="col" jhiSortBy="categorie.id" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.categorie">Categorie</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="gestion.id">
+
+          <th scope="col" jhiSortBy="gestion.id" class="col-1" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.immobilisation.gestion">Gestion</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col"></th>
+          <th scope="col" class="col-1" style="background-color: rgb(127, 204, 255)"></th>
+          <th scope="col" class="col-1" style="background-color: rgb(127, 204, 255)"></th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let immobilisation of immobilisations; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <td class="col-1">
             <a [routerLink]="['/immobilisation', immobilisation.id, 'view']">{{ immobilisation.id }}</a>
           </td>
-          <td>{{ immobilisation.nom }}</td>
-          <td class="text-break">{{ immobilisation.description }}</td>
-          <td>{{ immobilisation.valeur }}</td>
-          <td>{{ immobilisation.etat }}</td>
-          <td>{{ immobilisation.quantite }}</td>
-          <td>{{ immobilisation.dateAcquisition | formatMediumDatetime }}</td>
-          <td>{{ immobilisation.typeAmortissement }}</td>
-          <td>{{ immobilisation.dureeAmortissement }}</td>
-          <td>
+          <td class="col-1">{{ immobilisation.nom }}</td>
+          <td class="col-2">{{ immobilisation.description }}</td>
+          <td class="col-1">{{ immobilisation.valeur }}</td>
+          <td class="col-1">{{ immobilisation.etat }}</td>
+          <td class="col-1">{{ immobilisation.quantite }}</td>
+          <td class="col-1">{{ immobilisation.dateAcquisition | formatMediumDatetime }}</td>
+          <td class="col-1">{{ immobilisation.typeAmortissement }}</td>
+          <td class="col-1">{{ immobilisation.dureeAmortissement }}</td>
+          <td class="col-1">
             <div *ngIf="immobilisation.categorie">
               <a [routerLink]="['/categorie', immobilisation.categorie.id, 'view']">{{ immobilisation.categorie.id }}</a>
             </div>
           </td>
-          <td>
+          <td class="col-1">
             <div *ngIf="immobilisation.gestion">
               <a [routerLink]="['/gestion', immobilisation.gestion.id, 'view']">{{ immobilisation.gestion.id }}</a>
             </div>
           </td>
-          <td class="text-end">
+          <td class="text-end col-1">
             <div class="container mt-5">
               <div class="btn-group">
                 <button
@@ -137,33 +177,46 @@
                   <fa-icon icon="list"></fa-icon>
                 </button>
                 <div class="dropdown-menu">
-                  <button
-                    type="submit"
-                    [routerLink]="['/immobilisation', immobilisation.id, 'view']"
-                    class="btn btn-info btn-sm dropdown-item"
-                  >
+                  <button type="submit" [routerLink]="['/immobilisation', immobilisation.id, 'view']" class="dropdown-item">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">amortissement</span>
+                  </button>
+
+                  <button type="submit" [routerLink]="['/immobilisation', immobilisation.id, 'view']" class="dropdown-item">
                     <fa-icon icon="eye"></fa-icon>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
                   </button>
+
                   <button
                     type="submit"
                     [routerLink]="['/immobilisation', immobilisation.id, 'edit']"
-                    class="btn btn-primary btn-sm dropdown-item"
+                    class="dropdown-item"
                     data-cy="entityEditButton"
                   >
                     <fa-icon icon="pencil-alt"></fa-icon>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
                   </button>
-                  <button
-                    type="submit"
-                    (click)="delete(immobilisation)"
-                    class="btn dropdown-item btn-danger btn-sm"
-                    data-cy="entityDeleteButton"
-                  >
+                  <button type="submit" (click)="delete(immobilisation)" class="dropdown-item" data-cy="entityDeleteButton">
                     <fa-icon icon="times"></fa-icon>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
                   </button>
                 </div>
+              </div>
+            </div>
+          </td>
+
+          <td class="text-end col-1">
+            <div class="container mt-5">
+              <div class="btn-group">
+                <button
+                  type="submit"
+                  [routerLink]="['/immobilisation', immobilisation.id, 'view']"
+                  class="btn btn-warning"
+                  data-cy="entityEditButton"
+                >
+                  Calcul
+                  <!-- <fa-icon icon="list"></fa-icon> -->
+                </button>
               </div>
             </div>
           </td>

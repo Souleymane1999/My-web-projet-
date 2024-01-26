@@ -268,7 +268,7 @@ class StructureResourceIT {
         Structure partialUpdatedStructure = new Structure();
         partialUpdatedStructure.setId(structure.getId());
 
-        partialUpdatedStructure.nomStructure(UPDATED_NOM_STRUCTURE).adresseStructure(UPDATED_ADRESSE_STRUCTURE);
+        partialUpdatedStructure.nomStructure(UPDATED_NOM_STRUCTURE);
 
         restStructureMockMvc
             .perform(
@@ -283,7 +283,7 @@ class StructureResourceIT {
         assertThat(structureList).hasSize(databaseSizeBeforeUpdate);
         Structure testStructure = structureList.get(structureList.size() - 1);
         assertThat(testStructure.getNomStructure()).isEqualTo(UPDATED_NOM_STRUCTURE);
-        assertThat(testStructure.getAdresseStructure()).isEqualTo(UPDATED_ADRESSE_STRUCTURE);
+        assertThat(testStructure.getAdresseStructure()).isEqualTo(DEFAULT_ADRESSE_STRUCTURE);
     }
 
     @Test

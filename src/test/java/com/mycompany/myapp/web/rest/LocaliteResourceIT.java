@@ -268,7 +268,7 @@ class LocaliteResourceIT {
         Localite partialUpdatedLocalite = new Localite();
         partialUpdatedLocalite.setId(localite.getId());
 
-        partialUpdatedLocalite.codePostal(UPDATED_CODE_POSTAL);
+        partialUpdatedLocalite.nomLocalite(UPDATED_NOM_LOCALITE);
 
         restLocaliteMockMvc
             .perform(
@@ -282,8 +282,8 @@ class LocaliteResourceIT {
         List<Localite> localiteList = localiteRepository.findAll();
         assertThat(localiteList).hasSize(databaseSizeBeforeUpdate);
         Localite testLocalite = localiteList.get(localiteList.size() - 1);
-        assertThat(testLocalite.getNomLocalite()).isEqualTo(DEFAULT_NOM_LOCALITE);
-        assertThat(testLocalite.getCodePostal()).isEqualTo(UPDATED_CODE_POSTAL);
+        assertThat(testLocalite.getNomLocalite()).isEqualTo(UPDATED_NOM_LOCALITE);
+        assertThat(testLocalite.getCodePostal()).isEqualTo(DEFAULT_CODE_POSTAL);
     }
 
     @Test

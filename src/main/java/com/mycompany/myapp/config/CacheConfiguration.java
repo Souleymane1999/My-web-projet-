@@ -55,6 +55,7 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.Transfert.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Transfert.class.getName() + ".immobilisations");
             createCache(cm, com.mycompany.myapp.domain.Transfert.class.getName() + ".strutures");
+            createCache(cm, com.mycompany.myapp.domain.Agent.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

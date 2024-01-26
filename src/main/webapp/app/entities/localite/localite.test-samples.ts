@@ -1,19 +1,17 @@
 import { ILocalite, NewLocalite } from './localite.model';
 
 export const sampleWithRequiredData: ILocalite = {
-  id: 54138,
+  id: 98534,
 };
 
 export const sampleWithPartialData: ILocalite = {
-  id: 12436,
-  nomLocalite: 'Doux',
-  codePostal: 'protocol du',
+  id: 68637,
 };
 
 export const sampleWithFullData: ILocalite = {
-  id: 813,
-  nomLocalite: 'provident coulomb fort',
-  codePostal: 'paiement c',
+  id: 80411,
+  nomLocalite: 'Thaïlande',
+  codePostal: 'c enfant Clavier',
 };
 
 export const sampleWithNewData: NewLocalite = {

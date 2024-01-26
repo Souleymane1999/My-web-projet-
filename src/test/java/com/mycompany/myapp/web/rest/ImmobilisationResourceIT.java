@@ -344,9 +344,9 @@ class ImmobilisationResourceIT {
 
         partialUpdatedImmobilisation
             .nom(UPDATED_NOM)
-            .description(UPDATED_DESCRIPTION)
-            .typeAmortissement(UPDATED_TYPE_AMORTISSEMENT)
-            .dureeAmortissement(UPDATED_DUREE_AMORTISSEMENT);
+            .valeur(UPDATED_VALEUR)
+            .quantite(UPDATED_QUANTITE)
+            .dateAcquisition(UPDATED_DATE_ACQUISITION);
 
         restImmobilisationMockMvc
             .perform(
@@ -361,13 +361,13 @@ class ImmobilisationResourceIT {
         assertThat(immobilisationList).hasSize(databaseSizeBeforeUpdate);
         Immobilisation testImmobilisation = immobilisationList.get(immobilisationList.size() - 1);
         assertThat(testImmobilisation.getNom()).isEqualTo(UPDATED_NOM);
-        assertThat(testImmobilisation.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testImmobilisation.getValeur()).isEqualTo(DEFAULT_VALEUR);
+        assertThat(testImmobilisation.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testImmobilisation.getValeur()).isEqualTo(UPDATED_VALEUR);
         assertThat(testImmobilisation.getEtat()).isEqualTo(DEFAULT_ETAT);
-        assertThat(testImmobilisation.getQuantite()).isEqualTo(DEFAULT_QUANTITE);
-        assertThat(testImmobilisation.getDateAcquisition()).isEqualTo(DEFAULT_DATE_ACQUISITION);
-        assertThat(testImmobilisation.getTypeAmortissement()).isEqualTo(UPDATED_TYPE_AMORTISSEMENT);
-        assertThat(testImmobilisation.getDureeAmortissement()).isEqualTo(UPDATED_DUREE_AMORTISSEMENT);
+        assertThat(testImmobilisation.getQuantite()).isEqualTo(UPDATED_QUANTITE);
+        assertThat(testImmobilisation.getDateAcquisition()).isEqualTo(UPDATED_DATE_ACQUISITION);
+        assertThat(testImmobilisation.getTypeAmortissement()).isEqualTo(DEFAULT_TYPE_AMORTISSEMENT);
+        assertThat(testImmobilisation.getDureeAmortissement()).isEqualTo(DEFAULT_DUREE_AMORTISSEMENT);
     }
 
     @Test

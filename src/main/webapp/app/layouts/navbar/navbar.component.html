@@ -27,6 +27,75 @@
             </span>
           </a>
         </li>
+
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          *ngSwitchCase="true"
+          routerLink="/immobilisation"
+        >
+          <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+            <span>
+              <fa-icon icon="th-list"></fa-icon>
+              <span>Bien existant </span>
+            </span>
+          </a>
+        </li>
+
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          *ngSwitchCase="true"
+          routerLink="/transfert"
+        >
+          <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+            <span>
+              <fa-icon icon="user-check"></fa-icon>
+              <span>Transfert</span>
+            </span>
+          </a>
+        </li>
+
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          *ngSwitchCase="true"
+          routerLink="/maintenance"
+        >
+          <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+            <span>
+              <fa-icon icon="wrench"></fa-icon>
+              <span>Maintenance </span>
+            </span>
+          </a>
+        </li>
+
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          *ngSwitchCase="true"
+          routerLink="/structure"
+        >
+          <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+            <span>
+              <fa-icon icon="map-pin"></fa-icon>
+              <span>Structure </span>
+            </span>
+          </a>
+        </li>
+
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngSwitchCase="true" routerLink="/agent">
+          <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+            <span>
+              <fa-icon icon="users-cog"></fa-icon>
+              <span>Agent/user </span>
+            </span>
+          </a>
+        </li>
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         <li
           *ngSwitchCase="true"
@@ -43,30 +112,6 @@
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/agent-affecter"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span>Agent Affecter</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/agent-structure"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="collapseNavbar()"
-              >
-                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                <span>Agent Structure</span>
-              </a>
-            </li>
             <li>
               <a
                 class="dropdown-item"
@@ -103,7 +148,7 @@
                 <span>Immobilisation</span>
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a
                 class="dropdown-item"
                 routerLink="/localite"
@@ -114,7 +159,7 @@
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span>Localite</span>
               </a>
-            </li>
+            </li> -->
             <li>
               <a
                 class="dropdown-item"
@@ -149,6 +194,18 @@
               >
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span>Transfert</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLink="/agent"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="collapseNavbar()"
+              >
+                <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                <span>Agent</span>
               </a>
             </li>
             <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

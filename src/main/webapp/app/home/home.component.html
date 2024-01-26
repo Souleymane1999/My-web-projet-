@@ -1,16 +1,80 @@
 <div class="row">
-  <div class="col-md-3">
-    <img src="content/images/imageconnexion.png" alt="Description de l'image" />
+  <div class="col-md-4" style="text-align: center">
+    <img src="content/images/imageconnexion.png" alt="Description de l'image" style="max-width: 80%; height: auto" />
   </div>
 
-  <div class="col-md-9">
-    <h1 class="display-4"><span>Bienvenue, Java Hipster !</span> (Immobilisation)</h1>
+  <div class="col-md-8" style="text-align: left">
+    <style>
+      /* Appliquer la couleur au titre h1 */
+      h2 {
+        color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+      }
+      P {
+        font-size: 22px;
+      }
+      .header-container {
+        text-align: center; /* Aligner horizontalement le contenu du conteneur */
+      }
+      .header-container h2 {
+        margin: 0 0 0 15px; /* Ajuster la marge à votre convenance */
+        display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+      }
+      .header-container img {
+        max-width: 15%;
+        height: auto;
+      }
+    </style>
+    <div class="header-container">
+      <!-- Image -->
+      <img src="content/images/logo-cnss.png" alt="Description de l'image" />
 
-    <p class="lead">Ceci est votre page d'accueil</p>
+      <!-- Titre -->
+      <h2 class="display-4"><span>Bienvenue dans la gestion des immobilisations !</span></h2>
+    </div>
+
+    <!-- <img src="content/images/logo-cnss.png" alt="Description de l'image" style="max-width: 20%; height: auto;" />
+      <h2 class="display-4"><span>Bienvenue dans la gestion des immobilisation !</span> </h2> -->
+
+    <p>
+      La Caisse Nationale de Sécurité Sociale (CNSS) est un Etablissement Public à Caractère Social (EPCS) créé par la Loi n° 2003-34 du 5
+      août 2003 qui abroge et remplace la Loi n° 65-004 du 08 février 1985 portant création d’un Etablissement Public de l’Etat.
+    </p>
+
+    <!-- <p class="lead">Ceci est votre page d'accueil</p> -->
 
     <div [ngSwitch]="account !== null">
       <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account">Vous êtes connecté en tant que "{{ account.login }}".</span>
+        <!-- <span id="home-logged-message" *ngIf="account">Vous êtes connecté en tant que "{{ account.login }}".</span> -->
+
+        <!-- <button
+                        id="jh-create-entity"
+                        data-cy="entityCreateButton"
+                        class="btn btn-primary jh-create-entity create-immobilisation"
+                        routerLink="/transfert"
+                        >
+                        <fa-icon icon="plus"></fa-icon>
+                        <span jhiTranslate="immobilisationApp.immobilisation.home.createLabel">Voir un transfert </span>
+                        </button> -->
+        <style></style>
+        <p>
+          Une immobilisation est un actif d’utilisation durable pour une entité (entreprise, administration, association). L’immobilisation
+          est un élément identifiable du patrimoine ayant une valeur économique positive pour l’entité et qui sert l’activité de façon
+          durable et ne se consomme pas par le premier usage.
+        </p>
+        <p>Cette application represente l'oeuvre d'une etude effectuer concernant la gestion des immobilisations au sein de la CNSS</p>
+
+        <!-- <li>
+                            <a
+                           class="dropdown-item"
+                            routerLink="/agent"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            
+                            >
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Agent</span>
+                            </a>
+                        </li> -->
       </div>
 
       <div class="alert alert-warning" *ngSwitchCase="false">
@@ -29,27 +93,6 @@
       </div>
     </div>
 
-    <p>Si vous avez des questions à propos de JHipster :</p>
-
-    <ul>
-      <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">Page d'accueil de JHipster</a></li>
-      <li>
-        <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">JHipster sur Stack Overflow</a>
-      </li>
-      <li>
-        <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer"
-          >JHipster bug tracker</a
-        >
-      </li>
-      <li>
-        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">JHipster public chat room</a>
-      </li>
-      <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">Suivez @jhipster sur Twitter</a></li>
-    </ul>
-
-    <p>
-      <span>Si vous aimez JHipster, donnez nous une étoile sur</span>
-      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">GitHub </a>!
-    </p>
+    <div></div>
   </div>
 </div>

@@ -54,10 +54,10 @@ describe('Immobilisation Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call Categorie query and add missing value', () => {
       const immobilisation: IImmobilisation = { id: 456 };
-      const categorie: ICategorie = { id: 4880 };
+      const categorie: ICategorie = { id: 17642 };
       immobilisation.categorie = categorie;
 
-      const categorieCollection: ICategorie[] = [{ id: 93268 }];
+      const categorieCollection: ICategorie[] = [{ id: 2072 }];
       jest.spyOn(categorieService, 'query').mockReturnValue(of(new HttpResponse({ body: categorieCollection })));
       const additionalCategories = [categorie];
       const expectedCollection: ICategorie[] = [...additionalCategories, ...categorieCollection];
@@ -76,10 +76,10 @@ describe('Immobilisation Management Update Component', () => {
 
     it('Should call Gestion query and add missing value', () => {
       const immobilisation: IImmobilisation = { id: 456 };
-      const gestion: IGestion = { id: 6580 };
+      const gestion: IGestion = { id: 33629 };
       immobilisation.gestion = gestion;
 
-      const gestionCollection: IGestion[] = [{ id: 41603 }];
+      const gestionCollection: IGestion[] = [{ id: 47456 }];
       jest.spyOn(gestionService, 'query').mockReturnValue(of(new HttpResponse({ body: gestionCollection })));
       const additionalGestions = [gestion];
       const expectedCollection: IGestion[] = [...additionalGestions, ...gestionCollection];
@@ -98,9 +98,9 @@ describe('Immobilisation Management Update Component', () => {
 
     it('Should update editForm', () => {
       const immobilisation: IImmobilisation = { id: 456 };
-      const categorie: ICategorie = { id: 95200 };
+      const categorie: ICategorie = { id: 85494 };
       immobilisation.categorie = categorie;
-      const gestion: IGestion = { id: 67257 };
+      const gestion: IGestion = { id: 8672 };
       immobilisation.gestion = gestion;
 
       activatedRoute.data = of({ immobilisation });

@@ -1,3 +1,251 @@
+<body class="hold-transition login-page">
+  <div class="row col-md-12">
+    <div _ngcontent-ysg-c193="" class="container-fluid">
+      <div _ngcontent-ysg-c193="" class="row entete">
+        <div _ngcontent-ysg-c193="" class="col-12 mt-2">
+          <div _ngcontent-ysg-c193="" class="row">
+            <div _ngcontent-ysg-c193="" class="col-12 text-center">
+              <img _ngcontent-ysg-c193="" alt="logo" height="100px" src="/content/images/logo-cnss.png" />
+            </div>
+          </div>
+
+          <div _ngcontent-ysg-c193="" class="row">
+            <div _ngcontent-ysg-c193="" class="col-12 text text-bold text-center" style="font-size: 28px">
+              Caisse Nationale de Sécurité Sociale (CNSS)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div _ngcontent-ysg-c193="" class="row mt-1 corps">
+        <div _ngcontent-ysg-c193="" class="col-md-7 col-lg-8 col-sm-12 col-xs-12">
+          <img _ngcontent-ysg-c193="" alt="image" height="100%" width="100%" src="/content/images/imageconnexion.png" />
+        </div>
+
+        <div _ngcontent-ysg-c193="" class="col-md-5 col-lg-4 col-sm-12 col-xs-12" style="height: 100%">
+          <div _ngcontent-ysg-c193="" class="text text-center text-bold mt-4" style="font-size: 24px; color: rgb(0, 64, 128)">
+            IMMO (DBI)
+            <br />
+            <div _ngcontent-ysg-c193="" class="row">
+              <div _ngcontent-ysg-c193="" class="col-12 text-center">
+                <img _ngcontent-ysg-c193="" alt="logo" height="100px" src="/content/images/DBI.png" />
+              </div>
+            </div>
+            <!-- GESTION DES RESSOURCES HUMAINES -->
+          </div>
+          <div _ngcontent-ysg-c193="" class="card shadow-lg mt-4">
+            <div _ngcontent-ysg-c193="" class="card-header text text-center text-bold">Connexion</div>
+            <div _ngcontent-ysg-c193="" class="card-body login-card-body">
+              <form role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    id="username"
+                    placeholder="{{ 'global.form.username.placeholder' }}"
+                    formControlName="username"
+                    #username
+                    data-cy="username"
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    id="password"
+                    placeholder="{{ 'login.form.password.placeholder' }}"
+                    formControlName="password"
+                    data-cy="password"
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8">
+                    <div class="icheck-primary">
+                      <input type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+                      <label jhiTranslate="login.form.rememberme">Remember me</label>
+                    </div>
+
+                    <!--
+                    <div class="icheck-primary">
+                      <input type="checkbox" id="remember">
+                      <label for="remember">
+                        Remember Me
+                      </label>
+                    </div> -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-4">
+                    <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button" data-cy="submit">Sign in</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div _ngcontent-ysg-c193="" class="row mt-3 footer">
+        <div _ngcontent-ysg-c193="" class="col-12 text text-center">Copyright © CNSS Niger - By Souleymane Boubacar</div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- <body class="hold-transition login-page">
+  <div class="row col-md-12">
+    <div class="col-md-6" style="background-image: url(content/images/cnss.png); background-size: cover"></div>
+    <div class="col-md-6">
+      <div class="login-box" style="margin-top: 30%; margin-left: 20%">
+       
+        <div class="card card-outline card-primary">
+          <div class="card-header text-center">
+            <a href="../../index2.html" class="h1"><b>Ecnss</b>GRH</a>
+          </div>
+          <div class="card-body">
+            <p class="login-box-msg">
+              <img src="content/images/logo-cnss.png" style="height: 40%; width: 40%" />
+              <br />
+              Connecter vous
+            </p>
+
+            <div
+              class="alert alert-danger"
+              *ngIf="authenticationError"
+              jhiTranslate="login.messages.error.authentication"
+              data-cy="loginError"
+            >
+              <strong>Failed to sign in!</strong> Please check your credentials and try again.
+            </div>
+
+            <form role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  id="username"
+                  placeholder="{{ 'global.form.username.placeholder' | translate }}"
+                  formControlName="username"
+                  #username
+                  data-cy="username"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  placeholder="{{ 'login.form.password.placeholder' | translate }}"
+                  formControlName="password"
+                  data-cy="password"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-8">
+                  <div class="icheck-primary">
+                    <input type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+                    <label jhiTranslate="login.form.rememberme">Remember me</label>
+                  </div>
+
+               
+                </div>
+                <div class="col-4">
+                  <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button" data-cy="submit">Sign in</button>
+                </div>
+              </div>
+            </form>
+          
+          </div>
+        </div>
+       </div>
+    </div>
+  </div>
+</body> -->
+
+<!---
+<div>
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <h1 jhiTranslate="login.title" data-cy="loginTitle">Sign in</h1>
+      <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication" data-cy="loginError">
+        <strong>Failed to sign in!</strong> Please check your credentials and try again.
+      </div>
+      <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+        <div class="mb-3">
+          <label class="username-label" for="username" jhiTranslate="global.form.username.label">Login</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
+            placeholder="{{ 'global.form.username.placeholder' | translate }}"
+            formControlName="username"
+            #username
+            data-cy="username"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="password" jhiTranslate="login.form.password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+            placeholder="{{ 'login.form.password.placeholder' | translate }}"
+            formControlName="password"
+            data-cy="password"
+          />
+        </div>
+
+        <div class="form-check">
+          <label class="form-check-label" for="rememberMe">
+            <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
+            <span jhiTranslate="login.form.rememberme">Remember me</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button" data-cy="submit">Sign in</button>
+      </form>
+      <div class="mt-3 alert alert-warning">
+        <a class="alert-link" routerLink="/account/reset/request" jhiTranslate="login.password.forgot" data-cy="forgetYourPasswordSelector"
+          >Did you forget your password?</a
+        >
+      </div>
+
+      <div class="alert alert-warning">
+        <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
+        <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!--- code initiale 
 <div>
   <div class="d-flex justify-content-center">
     <div class="col-lg-6 col-md-8 col-sm-10">
@@ -55,3 +303,4 @@
     </div>
   </div>
 </div>
+</div> -->

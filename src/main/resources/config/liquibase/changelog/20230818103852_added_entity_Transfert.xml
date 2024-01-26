@@ -20,7 +20,10 @@
             <column name="immobilisation_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="struture_id" type="bigint">
+            <column name="agent_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="structure_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

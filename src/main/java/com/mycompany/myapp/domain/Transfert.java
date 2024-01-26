@@ -29,8 +29,11 @@ public class Transfert implements Serializable {
     private Immobilisation immobilisation;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    private Agent agent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "localite" }, allowSetters = true)
-    private Structure struture;
+    private Structure structure;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -73,16 +76,29 @@ public class Transfert implements Serializable {
         return this;
     }
 
-    public Structure getStruture() {
-        return this.struture;
+    public Agent getAgent() {
+        return this.agent;
     }
 
-    public void setStruture(Structure structure) {
-        this.struture = structure;
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
 
-    public Transfert struture(Structure structure) {
-        this.setStruture(structure);
+    public Transfert agent(Agent agent) {
+        this.setAgent(agent);
+        return this;
+    }
+
+    public Structure getStructure() {
+        return this.structure;
+    }
+
+    public void setStructure(Structure structure) {
+        this.structure = structure;
+    }
+
+    public Transfert structure(Structure structure) {
+        this.setStructure(structure);
         return this;
     }
 

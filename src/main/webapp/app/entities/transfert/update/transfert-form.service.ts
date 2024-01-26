@@ -33,7 +33,8 @@ type TransfertFormGroupContent = {
   id: FormControl<TransfertFormRawValue['id'] | NewTransfert['id']>;
   dateTransfert: FormControl<TransfertFormRawValue['dateTransfert']>;
   immobilisation: FormControl<TransfertFormRawValue['immobilisation']>;
-  struture: FormControl<TransfertFormRawValue['struture']>;
+  agent: FormControl<TransfertFormRawValue['agent']>;
+  structure: FormControl<TransfertFormRawValue['structure']>;
 };
 
 export type TransfertFormGroup = FormGroup<TransfertFormGroupContent>;
@@ -55,7 +56,8 @@ export class TransfertFormService {
       ),
       dateTransfert: new FormControl(transfertRawValue.dateTransfert),
       immobilisation: new FormControl(transfertRawValue.immobilisation),
-      struture: new FormControl(transfertRawValue.struture),
+      agent: new FormControl(transfertRawValue.agent),
+      structure: new FormControl(transfertRawValue.structure),
     });
   }
 

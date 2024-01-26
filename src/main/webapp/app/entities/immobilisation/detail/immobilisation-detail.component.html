@@ -1,14 +1,117 @@
-<!-- <div class="d-flex justify-content-center">
+<style>
+  /* Appliquer la couleur au titre h1 */
+  h2 {
+    color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+  }
+  /* P {
+      font-size: 22px;
+    } */
+  .header-container {
+    text-align: center; /* Aligner horizontalement le contenu du conteneur */
+  }
+  .header-container h2 {
+    margin: 0 0 0 10px; /* Ajuster la marge à votre convenance */
+    display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+  }
+  .header-container img {
+    max-width: 10%;
+    height: auto;
+  }
+</style>
+
+<div class="header-container">
+  <!-- Image -->
+  <img src="content/images/logo-cnss.png" alt="Description de l'image" />
+
+  <!-- Titre -->
+  <h2 class="display-4"><span>Immobilisations</span></h2>
+</div>
+<div hidden="true">
+  <div class="d-flex justify-content-center hidden=true">
+    <div class="col-8">
+      <div *ngIf="immobilisation">
+        <h2 data-cy="immobilisationDetailsHeading">
+          <span jhiTranslate="immobilisationApp.immobilisation.detail.title">Immobilisation</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ immobilisation.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.nom">Nom</span></dt>
+          <dd>
+            <span>{{ immobilisation.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.description">Description</span></dt>
+          <dd>
+            <span>{{ immobilisation.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.valeur">Valeur</span></dt>
+          <dd>
+            <span>{{ immobilisation.valeur }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.etat">Etat</span></dt>
+          <dd>
+            <span>{{ immobilisation.etat }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.quantite">Quantite</span></dt>
+          <dd>
+            <span>{{ immobilisation.quantite }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.dateAcquisition">Date Acquisition</span></dt>
+          <dd>
+            <span>{{ immobilisation.dateAcquisition | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.typeAmortissement">Type Amortissement</span></dt>
+          <dd>
+            <span>{{ immobilisation.typeAmortissement }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.dureeAmortissement">Duree Amortissement</span></dt>
+          <dd>
+            <span>{{ immobilisation.dureeAmortissement }}</span>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.categorie">Categorie</span></dt>
+          <dd>
+            <div *ngIf="immobilisation.categorie">
+              <a [routerLink]="['/categorie', immobilisation.categorie.id, 'view']">{{ immobilisation.categorie.id }}</a>
+            </div>
+          </dd>
+          <dt><span jhiTranslate="immobilisationApp.immobilisation.gestion">Gestion</span></dt>
+          <dd>
+            <div *ngIf="immobilisation.gestion">
+              <a [routerLink]="['/gestion', immobilisation.gestion.id, 'view']">{{ immobilisation.gestion.id }}</a>
+            </div>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/immobilisation', immobilisation.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="immobilisation">
       <h2 data-cy="immobilisationDetailsHeading">
-        <span jhiTranslate="immobilisationApp.immobilisation.detail.title">Immobilisation</span>
+        <span jhiTranslate="immobilisationApp.immobilisation.detail.title">Details et calcule des amortissements</span>
       </h2>
 
       <hr />
 
       <jhi-alert-error></jhi-alert-error>
-
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
@@ -16,22 +119,12 @@
         <dd>
           <span>{{ immobilisation.id }}</span>
         </dd>
-        <dt><span jhiTranslate="immobilisationApp.immobilisation.nom">Nom</span></dt>
-        <dd>
-          <span>{{ immobilisation.nom }}</span>
-        </dd>
-        <dt><span jhiTranslate="immobilisationApp.immobilisation.description">Description</span></dt>
-        <dd>
-          <span>{{ immobilisation.description }}</span>
-        </dd>
+
         <dt><span jhiTranslate="immobilisationApp.immobilisation.valeur">Valeur</span></dt>
         <dd>
           <span>{{ immobilisation.valeur }}</span>
         </dd>
-        <dt><span jhiTranslate="immobilisationApp.immobilisation.etat">Etat</span></dt>
-        <dd>
-          <span>{{ immobilisation.etat }}</span>
-        </dd>
+
         <dt><span jhiTranslate="immobilisationApp.immobilisation.quantite">Quantite</span></dt>
         <dd>
           <span>{{ immobilisation.quantite }}</span>
@@ -44,23 +137,17 @@
         <dd>
           <span>{{ immobilisation.typeAmortissement }}</span>
         </dd>
-        <dt><span jhiTranslate="immobilisationApp.immobilisation.dureeAmortissement">Duree Amortissement</span></dt>
+
+        <dt><span jhiTranslate="immobilisationApp.immobilisation.dureeAmortissement">dureeAmortissement</span></dt>
         <dd>
           <span>{{ immobilisation.dureeAmortissement }}</span>
         </dd>
-        <dt><span jhiTranslate="immobilisationApp.immobilisation.categorie">Categorie</span></dt>
-        <dd>
-          <div *ngIf="immobilisation.categorie">
-            <a [routerLink]="['/categorie', immobilisation.categorie.id, 'view']">{{ immobilisation.categorie.id }}</a>
-          </div>
-        </dd>
-        <dt><span jhiTranslate="immobilisationApp.immobilisation.gestion">Gestion</span></dt>
-        <dd>
-          <div *ngIf="immobilisation.gestion">
-            <a [routerLink]="['/gestion', immobilisation.gestion.id, 'view']">{{ immobilisation.gestion.id }}</a>
-          </div>
-        </dd>
+        <div>
+          Taux d'amortissement (en pourcentage) : <input #taux class="form-control" type="number" step="0.01" [value]="taux" /> <br />
+        </div>
       </dl>
+
+      <button class="btn btn-success" (click)="calculerAmortissement(taux)">calculerAmortissement</button>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
@@ -71,45 +158,82 @@
       </button>
     </div>
   </div>
-</div> -->
-<div class="container mt-4" *ngIf="immobilisation">
-  <div class="card">
-    <div class="card-header bg-primary text-center text-light">
-      <h2 data-cy="immobilisationDetailsHeading">
-        Details <span jhiTranslate="immobilisationApp.immobilisation.detail.title">Immobilisation</span>
-      </h2>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">
-        <span jhiTranslate="immobilisationApp.immobilisation.nom">Nom</span>: <span>{{ immobilisation.nom }}</span>
-      </h5>
-      <p class="card-text">
-        <strong><span jhiTranslate="immobilisationApp.immobilisation.valeur">Valeur</span></strong> :
-        <span>{{ immobilisation.valeur }}</span>
-      </p>
-      <p class="card-text">
-        <strong><span jhiTranslate="immobilisationApp.immobilisation.quantite">Quantite</span></strong> :
-        <span>{{ immobilisation.quantite }}</span>
-      </p>
-      <p class="card-text">
-        <strong><span jhiTranslate="immobilisationApp.immobilisation.categorie">Categorie</span></strong> :
-        <span>{{ immobilisation.categorie }}</span>
-      </p>
-      <p class="card-text">
-        <strong><span jhiTranslate="immobilisationApp.immobilisation.dateAcquisition">DateAcquisition</span></strong> :
-        <span>{{ immobilisation.dateAcquisition }}</span>
-      </p>
-      <p class="card-text">
-        <strong><span jhiTranslate="immobilisationApp.immobilisation.gestion">TypeGestion</span></strong> :
-        <span>{{ immobilisation.gestion }}</span>
-      </p>
 
-      <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="immobilisationApp.immobilisation.description">Description</span></dt>
-        <dd class="text-break">
-          <span>{{ immobilisation.description }}</span>
-        </dd>
-      </dl>
+  <head>
+    <title>Calculs d'amortissement</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>Tableau d'amortissement</h2>
     </div>
-  </div>
+
+    <br />
+
+    <table id="resultats">
+      <thead>
+        <tr *ngIf="resultats">
+          <th>Année</th>
+          <th>Montant d'amortissement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultat of resultats">
+          <td>{{ resultat.annee }}</td>
+          <td>{{ resultat.amortissement }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+
+  <!-- <script>
+          function calculerAmortissement() {
+              var montant = parseFloat(document.getElementById('montant').value);
+              var taux = parseFloat(document.getElementById('taux').value);
+              var duree = parseInt(document.getElementById('duree').value);
+              var nombreDeMois = 12;
+  
+              var table = document.getElementById("resultats");
+              table.innerHTML = "";
+  
+              var headerRow = table.insertRow(0);
+              var headerCell1 = headerRow.insertCell(0);
+              var headerCell2 = headerRow.insertCell(1);
+              headerCell1.innerHTML = "Année";
+              headerCell2.innerHTML = "Montant d'amortissement";
+  
+              for (var i = 1; i <= duree; i++) {
+                  var annuite = (montant * taux * nombreDeMois) / (100 * 12);
+  
+                  var row = table.insertRow(i);
+                  var cell1 = row.insertCell(0);
+                  var cell2 = row.insertCell(1);
+                  cell1.innerHTML = i; 
+                  cell2.innerHTML = annuite.toFixed(2);
+              }
+          }
+  
+          document.addEventListener("DOMContentLoaded", function() {
+              var bouton = document.querySelector('input[type="button"]');
+              bouton.addEventListener('click', calculerAmortissement);
+              
+          });
+      </script> -->
 </div>

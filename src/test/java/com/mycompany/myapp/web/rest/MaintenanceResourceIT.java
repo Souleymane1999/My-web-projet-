@@ -300,7 +300,10 @@ class MaintenanceResourceIT {
         Maintenance partialUpdatedMaintenance = new Maintenance();
         partialUpdatedMaintenance.setId(maintenance.getId());
 
-        partialUpdatedMaintenance.description(UPDATED_DESCRIPTION).coutMaintenance(UPDATED_COUT_MAINTENANCE);
+        partialUpdatedMaintenance
+            .dateMaintenance(UPDATED_DATE_MAINTENANCE)
+            .responsable(UPDATED_RESPONSABLE)
+            .coutMaintenance(UPDATED_COUT_MAINTENANCE);
 
         restMaintenanceMockMvc
             .perform(
@@ -314,9 +317,9 @@ class MaintenanceResourceIT {
         List<Maintenance> maintenanceList = maintenanceRepository.findAll();
         assertThat(maintenanceList).hasSize(databaseSizeBeforeUpdate);
         Maintenance testMaintenance = maintenanceList.get(maintenanceList.size() - 1);
-        assertThat(testMaintenance.getDateMaintenance()).isEqualTo(DEFAULT_DATE_MAINTENANCE);
-        assertThat(testMaintenance.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testMaintenance.getResponsable()).isEqualTo(DEFAULT_RESPONSABLE);
+        assertThat(testMaintenance.getDateMaintenance()).isEqualTo(UPDATED_DATE_MAINTENANCE);
+        assertThat(testMaintenance.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testMaintenance.getResponsable()).isEqualTo(UPDATED_RESPONSABLE);
         assertThat(testMaintenance.getCoutMaintenance()).isEqualTo(UPDATED_COUT_MAINTENANCE);
     }
 

@@ -1,6 +1,35 @@
+<style>
+  /* Appliquer la couleur au titre h1 */
+  h2 {
+    color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+  }
+  /* P {
+      font-size: 22px;
+    } */
+  .header-container {
+    text-align: center; /* Aligner horizontalement le contenu du conteneur */
+  }
+  .header-container h2 {
+    margin: 0 0 0 13px; /* Ajuster la marge à votre convenance */
+    display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+  }
+  .header-container img {
+    max-width: 13%;
+    height: auto;
+  }
+</style>
+
+<div class="header-container">
+  <!-- Image -->
+  <img src="content/images/logo-cnss.png" alt="Description de l'image" />
+
+  <!-- Titre -->
+  <h2 class="display-4"><span>Maintenance</span></h2>
+</div>
+
 <div>
   <h2 id="page-heading" data-cy="MaintenanceHeading">
-    <span jhiTranslate="immobilisationApp.maintenance.home.title">Maintenances</span>
+    <!-- <span jhiTranslate="immobilisationApp.maintenance.home.title">Maintenances</span> -->
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
@@ -15,7 +44,7 @@
         [routerLink]="['/maintenance/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="immobilisationApp.maintenance.home.createLabel"> Créer un nouveau Maintenance </span>
+        <span jhiTranslate="immobilisationApp.maintenance.home.createLabel"> Ajouter une Maintenance </span>
       </button>
     </div>
   </h2>
@@ -32,37 +61,37 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+          <th scope="col" jhiSortBy="id" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="global.field.id">ID</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="dateMaintenance">
+          <th scope="col" jhiSortBy="dateMaintenance" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.maintenance.dateMaintenance">Date Maintenance</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="description">
+          <th scope="col" jhiSortBy="description" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.maintenance.description">Description</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="responsable">
+          <th scope="col" jhiSortBy="responsable" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.maintenance.responsable">Responsable</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="coutMaintenance">
+          <th scope="col" jhiSortBy="coutMaintenance" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.maintenance.coutMaintenance">Cout Maintenance</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="immobilisation.id">
+          <th scope="col" jhiSortBy="immobilisation.id" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.maintenance.immobilisation">Immobilisation</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>

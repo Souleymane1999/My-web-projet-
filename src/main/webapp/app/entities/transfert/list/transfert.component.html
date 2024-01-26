@@ -1,6 +1,35 @@
+<style>
+  /* Appliquer la couleur au titre h1 */
+  h2 {
+    color: rgb(19, 97, 128); /* Remplacez "blue" par la couleur de votre choix */
+  }
+  /* P {
+      font-size: 22px;
+    } */
+  .header-container {
+    text-align: center; /* Aligner horizontalement le contenu du conteneur */
+  }
+  .header-container h2 {
+    margin: 0 0 0 13px; /* Ajuster la marge à votre convenance */
+    display: inline-block; /* Permettre à l'élément d'être sur la même ligne que l'image */
+  }
+  .header-container img {
+    max-width: 13%;
+    height: auto;
+  }
+</style>
+
+<div class="header-container">
+  <!-- Image -->
+  <img src="content/images/logo-cnss.png" alt="Description de l'image" />
+
+  <!-- Titre -->
+  <h2 class="display-4"><span>Transfert</span></h2>
+</div>
+
 <div>
   <h2 id="page-heading" data-cy="TransfertHeading">
-    <span jhiTranslate="immobilisationApp.transfert.home.title">Transferts</span>
+    <!-- <span jhiTranslate="immobilisationApp.transfert.home.title">Transferts</span> -->
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
@@ -15,7 +44,7 @@
         [routerLink]="['/transfert/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="immobilisationApp.transfert.home.createLabel"> Créer un nouveau Transfert </span>
+        <span jhiTranslate="immobilisationApp.transfert.home.createLabel"> Ajouter un nouveau Transfert </span>
       </button>
     </div>
   </h2>
@@ -32,27 +61,33 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
+          <th scope="col" jhiSortBy="id" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="global.field.id">ID</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="dateTransfert">
+          <th scope="col" jhiSortBy="dateTransfert" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.transfert.dateTransfert">Date Transfert</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="immobilisation.id">
+          <th scope="col" jhiSortBy="immobilisation.id" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
               <span jhiTranslate="immobilisationApp.transfert.immobilisation">Immobilisation</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="struture.id">
+          <th scope="col" jhiSortBy="agent.id" style="background-color: rgb(127, 204, 255)">
             <div class="d-flex">
-              <span jhiTranslate="immobilisationApp.transfert.struture">Struture</span>
+              <span jhiTranslate="immobilisationApp.transfert.agent">Agent</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="structure.id" style="background-color: rgb(127, 204, 255)">
+            <div class="d-flex">
+              <span jhiTranslate="immobilisationApp.transfert.structure">Structure</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -71,8 +106,14 @@
             </div>
           </td>
           <td>
-            <div *ngIf="transfert.struture">
-              <a [routerLink]="['/structure', transfert.struture.id, 'view']">{{ transfert.struture.id }}</a>
+            <div *ngIf="transfert.agent">
+              {{ transfert.agent.nomUtilisateur }}
+              <!-- <a [routerLink]="['/agent', transfert.agent.id, 'view']">{{ transfert.agent.nomUtilisateur }}</a> -->
+            </div>
+          </td>
+          <td>
+            <div *ngIf="transfert.structure">
+              <a [routerLink]="['/structure', transfert.structure.id, 'view']">{{ transfert.structure.nomStructure }}</a>
             </div>
           </td>
           <td class="text-end">
